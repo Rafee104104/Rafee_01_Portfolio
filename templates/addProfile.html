@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container container-center">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="POST" enctype="multipart/form-data">
+                <h2>Add Profile</h2><br>
+                {% csrf_token %}
+                {{form.as_p}}
+                {% if profile.profile_image %}
+                <img src="{{ profile.profile_image.url }}" width="100" height="100">
+                {% endif %}
+                <br><br>
+                <br>
+                <input class="btn btn-success" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
