@@ -12,10 +12,11 @@ def registration(request):
         if form.is_valid():
             user = form.save(commit = False)
             user.set_password(form.cleaned_data['password1'])
-            # user.set_password(form.cleaned_data.get('password1')])
-            profile = Profile(user=user)
-            profile.save()
             user.save()
+            # user.set_password(form.cleaned_data.get('password1')])
+            profile = Profile.objects.create(user=user)
+            profile.save()
+            
             return redirect('signin')
     else:
         form = RegistrationForm()
